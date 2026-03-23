@@ -14,16 +14,16 @@ basic.forever(function () {
     MuseOLED.clear()
     basic.pause(2000)
     abstand1 = sonar.ping(
-        DigitalPin.P1,
-        DigitalPin.P8,
-        PingUnit.Centimeters
+    DigitalPin.P1,
+    DigitalPin.P8,
+    PingUnit.Centimeters
     )
     MuseOLED.writeNumNewLine(abstand1)
     basic.pause(200)
     MuseOLED.writeNumNewLine(sonar.ping(
-        DigitalPin.P2,
-        DigitalPin.P12,
-        PingUnit.Centimeters
+    DigitalPin.P2,
+    DigitalPin.P12,
+    PingUnit.Centimeters
     ))
     if (abstand1 < 15) {
         robotbit.MotorRun(robotbit.Motors.M1A, 138)
