@@ -1,3 +1,4 @@
+let abstand2 = 0
 let abstand1 = 0
 basic.showIcon(IconNames.Yes)
 MuseOLED.init()
@@ -10,7 +11,7 @@ MuseOLED.writeStringNewLine("Temp.:" + input.temperature() + " Grad")
 robotbit.MotorRun(robotbit.Motors.M1A, 161)
 led.enable(false)
 basic.forever(function () {
-    basic.pause(2000)
+    basic.pause(1000)
     MuseOLED.clear()
     basic.pause(2000)
     abstand1 = sonar.ping(
@@ -25,6 +26,12 @@ basic.forever(function () {
     DigitalPin.P12,
     PingUnit.Centimeters
     ))
+    abstand2 = sonar.ping(
+    DigitalPin.P0,
+    DigitalPin.P13,
+    PingUnit.Centimeters
+    )
+    MuseOLED.writeNumNewLine(abstand2)
     if (abstand1 < 15) {
         robotbit.MotorRun(robotbit.Motors.M1A, 138)
         robotbit.Servo(robotbit.Servos.S1, 143)
@@ -32,5 +39,5 @@ basic.forever(function () {
         robotbit.MotorRun(robotbit.Motors.M1A, -108)
         robotbit.Servo(robotbit.Servos.S1, 85)
     }
-    MuseOLED.writeStringNewLine("Temp.:" + input.temperature() + " Grad")
+    MuseOLED.writeStringNewLine("Temp.:" + input.temperature() + " Grad " + pins.digitalReadPin(DigitalPin.P14))
 })
